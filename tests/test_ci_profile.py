@@ -2,6 +2,7 @@
 """Regression: every writable TeX tree must stay inside the runner root."""
 from pathlib import Path
 import tempfile
+import re
 import unittest
 
 from ci_profile import make_profile
@@ -43,6 +44,17 @@ class ProfileTest(unittest.TestCase):
     def test_profile_injection_is_rejected(self):
         with self.assertRaises(ValueError):
             make_profile('/runner/texlive\nTEXDIR /unexpected')
+
+    def test_ci_collections_match_documented_2026_names(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / '.github/workflows/validate.yml').read_text()
+        install = next(line for line in workflow.splitlines() if 'tlmgr install ' in line)
+        expected = {'collection-xetex', 'collection-langchinese', 'collection-latexextra',
+                    'collection-fontsrecommended', 'collection-bibtexextra',
+                    'collection-pictures', 'collection-mathscience'}
+        self.assertEqual(set(re.findall(r'collection-[a-z]+', install)), expected)
+        documentation = (root / 'docs/BUILD.md').read_text()
+        self.assertTrue(expected <= set(re.findall(r'collection-[a-z]+', documentation)))
 
 
 if __name__ == '__main__':

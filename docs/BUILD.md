@@ -19,7 +19,7 @@ TeX Live用户可用tlmgr安装所需集合（依安装方式选择，系统发�
 
 ```bash
 tlmgr install collection-xetex collection-langchinese collection-latexextra \
-  collection-fontsrecommended collection-bibtexextra collection-pictures collection-science
+  collection-fontsrecommended collection-bibtexextra collection-pictures collection-mathscience
 ```
 
 ## 两种字体模式

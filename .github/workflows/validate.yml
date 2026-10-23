@@ -32,7 +32,7 @@ jobs:
             path="$(kpsewhich -var-value="$tree")"
             case "$path" in "$RUNNER_TEMP/texlive/"*) ;; *) echo "Unexpected $tree: $path" >&2; exit 1;; esac
           done
-          tlmgr install collection-xetex collection-langchinese collection-latexextra collection-fontsrecommended collection-bibtexextra collection-pictures collection-science
+          tlmgr install collection-xetex collection-langchinese collection-latexextra collection-fontsrecommended collection-bibtexextra collection-pictures collection-mathscience
       - run: python3 tests/preflight.py
       - run: python3 tests/compile_all.py
       - run: python3 tests/boundaries.py
