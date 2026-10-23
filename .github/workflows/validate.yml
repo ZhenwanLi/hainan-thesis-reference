@@ -10,29 +10,17 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 50
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - name: Test non-root installation profile
-        run: python3 tests/test_ci_profile.py
+        run: |
+          python3 tests/test_ci_profile.py
+          python3 tests/test_ci_texlive.py
       - name: Install system tools
         run: sudo apt-get update && sudo apt-get install -y perl curl poppler-utils fontconfig
       # Current-network installer, NOT a hermetically pinned image. Fail closed
       # if the network moves to another TeX Live major release.
       - name: Install TeX Live 2026
-        run: |
-          curl --fail --location --retry 3 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz -o "$RUNNER_TEMP/install-tl.tar.gz"
-          mkdir "$RUNNER_TEMP/tex-installer"
-          tar -xzf "$RUNNER_TEMP/install-tl.tar.gz" -C "$RUNNER_TEMP/tex-installer" --strip-components=1
-          python3 tests/ci_profile.py "$RUNNER_TEMP/texlive" > "$RUNNER_TEMP/profile"
-          perl "$RUNNER_TEMP/tex-installer/install-tl" -profile "$RUNNER_TEMP/profile"
-          echo "$RUNNER_TEMP/texlive/bin/x86_64-linux" >> "$GITHUB_PATH"
-      - name: Install collections and check version
-        run: |
-          tlmgr --version | grep 'version 2026'
-          for tree in TEXMFLOCAL TEXMFSYSVAR TEXMFSYSCONFIG TEXMFHOME TEXMFVAR TEXMFCONFIG; do
-            path="$(kpsewhich -var-value="$tree")"
-            case "$path" in "$RUNNER_TEMP/texlive/"*) ;; *) echo "Unexpected $tree: $path" >&2; exit 1;; esac
-          done
-          tlmgr install collection-xetex collection-langchinese collection-latexextra collection-fontsrecommended collection-bibtexextra collection-pictures collection-mathscience
+        run: bash tests/ci_texlive.sh
       - run: python3 tests/preflight.py
       - run: python3 tests/compile_all.py
       - run: python3 tests/boundaries.py

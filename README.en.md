@@ -55,6 +55,7 @@ Read the institution README before editing. A PDF from a previous successful bui
 
 ```bash
 python3 tests/test_ci_profile.py
+python3 tests/test_ci_texlive.py
 python3 tests/compile_all.py
 python3 tests/boundaries.py
 python3 tests/structure.py

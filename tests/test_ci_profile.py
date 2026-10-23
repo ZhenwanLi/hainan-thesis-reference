@@ -47,8 +47,8 @@ class ProfileTest(unittest.TestCase):
 
     def test_ci_collections_match_documented_2026_names(self):
         root = Path(__file__).resolve().parents[1]
-        workflow = (root / '.github/workflows/validate.yml').read_text()
-        install = next(line for line in workflow.splitlines() if 'tlmgr install ' in line)
+        workflow = (root / 'tests/ci_texlive.sh').read_text()
+        install = next(line for line in workflow.splitlines() if ' install collection-' in line)
         expected = {'collection-xetex', 'collection-langchinese', 'collection-latexextra',
                     'collection-fontsrecommended', 'collection-bibtexextra',
                     'collection-pictures', 'collection-mathscience'}
