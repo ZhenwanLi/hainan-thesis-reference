@@ -1,0 +1,30 @@
+name: 来源或格式更新 / Source or format update
+description: 补充官方公开来源，或指出具体学院、层次、届别的格式差异。
+title: "[格式/来源] 学校 / 届别：问题简述"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请勿把单个学院规范推广到全校，不直接上传真实论文、国标全文或未经确认授权的官方附件。
+        Share public source links and the precise scope; do not upload private papers or unreviewed attachments.
+  - type: input
+    id: scope
+    attributes:
+      label: 适用范围 / Scope
+      description: 学校、学院、学位层次、适用届别；不确定的部分请明确说明。
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 官方公开来源 / Official public source
+      description: 提供公开URL、文件标题、发布日期和相关条款；未取得原件时请说明，不推测内容。
+    validations:
+      required: true
+  - type: textarea
+    id: difference
+    attributes:
+      label: 当前差异与建议 / Difference and proposal
+      description: 指出相关文件、目前行为和来源要求的差别；也可提交明确标注待核对的资料线索。
+    validations:
+      required: true

@@ -1,8 +1,18 @@
-# 海南高校论文 LaTeX 参考模板
+# 海南高校毕业论文 LaTeX 参考模板 · Hainan Thesis Reference
+
+[![Preview validation](https://github.com/ZhenwanLi/hainan-thesis-reference/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/ZhenwanLi/hainan-thesis-reference/actions/workflows/validate.yml)
+
+中文 · [English](README.en.md) · [安装与构建](docs/BUILD.md) · [常见问题](docs/FAQ.md) · [反馈问题](https://github.com/ZhenwanLi/hainan-thesis-reference/issues/new/choose)
+
+面向海南高校毕业论文写作的 **LaTeX / XeLaTeX / CTeX 非官方参考模板集合**：六校、九个编译入口，包含中英文摘要、目录、正文、图表、公式、参考文献和附录示例，以及官方资料来源索引和自动化测试。适合了解论文工程结构、学习中文论文排版，或在核对学院要求后进行本地适配。
+
+**Hainan university thesis templates** with Chinese/English examples, BibTeX references and automated compilation checks. See the [English overview](README.en.md) for scope and setup.
 
 **非官方、非学校认证项目。** 提供可编译的论文写作示例与官方来源索引；不保证符合任何学院当届提交要求。所有示例研究内容均非真实实验或调查结果，不可直接作为毕业论文提交。
 
 ## 范围与状态
+
+### 按学校找模板
 
 | 模板目录 | 依据 / 适用边界 | 状态 |
 |---|---|---|
@@ -15,9 +25,28 @@
 
 海南大学及海南师范大学本版仅提供[来源链接](sources/README.md)，不捆绑上游代码、历史论文或原始压缩包。不代表这些学校没有模板，也不代表本项目覆盖海南全部高校或学位层次。
 
+### 项目提供什么
+
+- **可独立使用的学校目录**：个人信息、章节、参考文献与字体配置分开组织；热海提供理工、文经管法、外语和艺术四类入口。
+- **可编辑的排版示例**：图表、公式、脚注、程序代码及附录；所有研究文字和数据仅作示例，不是研究成果。
+- **中文参考文献工具链**：BibTeX 与显式 `GB/T 7714-2015` 样式；是否满足当届学院要求须另行确认，详见[文献基线](sources/README.md#文献标准基线)。
+- **不依赖微软字体的预览**：默认使用 TeX Live 中的开放字体；需要学校字体时显式切换，不静默替换。
+- **可追溯的验证**：GitHub Actions 检查编译、字体嵌入、引用、长字段及结构；[验证说明](docs/VALIDATION.md)记录结果与边界。
+
+不提供：官方认证、论文代写、真实研究数据、未经许可的字体或官方附件，也不保证 LaTeX/PDF 可替代学校要求的 Word 提交。
+
 ## 快速开始
 
 依赖：Linux、Bash、Python 3.10+、TeX Live 2026及宏包、Poppler。详见[安装与构建](docs/BUILD.md)。不附带字体文件。
+
+先获取源码（或使用 GitHub 页面上的 **Code → Download ZIP**）：
+
+```bash
+git clone https://github.com/ZhenwanLi/hainan-thesis-reference.git
+cd hainan-thesis-reference
+```
+
+安装依赖后检查环境并选择入口：
 
 ```bash
 python3 tests/preflight.py
@@ -29,6 +58,8 @@ bash templates/海南医科大学/compile.sh
 ```
 
 其他学校同样在对应目录执行 `bash compile.sh`。中间文件在各自`.build/<入口>/`，最终PDF在模板目录；只有完整编译成功才替换最终PDF，失败保留旧PDF，务必查看退出码而不是仅看PDF存在。
+
+第一次使用建议：**读学校 README 确认适用范围 → 编译原始示例 → 修改个人信息、章节和 `refs.bib` → 再与学院当届要求逐项核对**。不知道修改哪个文件、能否用 Overleaf 或为什么没有 PDF 下载？见[常见问题](docs/FAQ.md)。
 
 **默认是开放字体预览模式，不是学校字体格式。** 使用TeX Live的Fandol及TeX Gyre Termes，PDF分页可能与学校字体模式不同。若已合法安装所需字体，可显式运行：
 
@@ -63,3 +94,11 @@ python3 tests/release_audit.py
 - 可用 `python3 tests/export_source.py ../hainan-thesis-reference-source.zip` 导出仅含源码/文档的干净包；不覆盖已有目标，详见发布清单。不要直接打包含本机产物的整个工作目录。
 
 模板为工具，不代写研究；不提供真实性、学术质量或答辩资格保证。使用前请与所属学院确认是否接受LaTeX/PDF、签名和归档形式。
+
+## 帮助项目完善
+
+- [报告编译问题](https://github.com/ZhenwanLi/hainan-thesis-reference/issues/new/choose)：附学校、入口、系统、工具链版本及脱敏后的第一处错误。
+- [补充官方来源或格式差异](https://github.com/ZhenwanLi/hainan-thesis-reference/issues/new/choose)：注明学院、学位层次、适用届别及公开来源链接，不直接上传真实论文或未确认授权的附件。
+- 欢迎通过 Pull Request 改进示例与测试，先阅读[贡献说明](CONTRIBUTING.md)。若项目对你有帮助，可以 Star 收藏，或分享仓库链接给同校同学。
+
+仓库维护：[ZhenwanLi](https://github.com/ZhenwanLi)。学校格式与材料问题请优先通过公开 Issue 交流，但不要公开个人信息。

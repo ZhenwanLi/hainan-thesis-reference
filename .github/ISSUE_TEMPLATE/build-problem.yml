@@ -1,0 +1,38 @@
+name: 编译问题 / Build problem
+description: 报告安装、字体、参考文献或编译失败；请先脱敏。
+title: "[编译] 学校 / 入口：问题简述"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先阅读安装指南与常见问题。请勿上传真实论文、学号、签名、令牌或未经许可的字体；只提供脱敏的最小示例和第一处错误。
+        Please redact personal data and share a minimal example, not a real student thesis.
+  - type: input
+    id: target
+    attributes:
+      label: 学校与入口 / Institution and entry
+      placeholder: 海南热带海洋学院 / main-humanities
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境 / Environment
+      description: 操作系统、TeX Live 年份、XeLaTeX/gbt7714版本、字体模式（preview或school）；若使用Overleaf/WSL请注明。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤与预期结果 / Steps and expected result
+      description: 提供执行命令、修改了哪些内容，以及原始示例是否可编译。
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: 第一处错误 / First error
+      description: 粘贴脱敏后的相关片段，不要提交完整私人日志。旧PDF存在不代表本次编译成功。
+      render: text
+    validations:
+      required: true
