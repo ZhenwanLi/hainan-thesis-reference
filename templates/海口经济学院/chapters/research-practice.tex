@@ -1,0 +1,63 @@
+\section*{引言}\addcontentsline{toc}{section}{引言}
+图像识别是一个具有明确输入和输出的研究任务，但研究价值不能只由选用的网络名称决定。本示例展示如何把研究问题、方法、实验和结论组织成可复核的论文，不提供真实实验成果。文中数值和图形均供排版测试，不能作为技术结论引用。
+\section{研究背景与问题定义}
+\subsection{研究对象与任务边界}
+首先给出图像来源、类别定义、使用场景和评价目标。明确研究是在封闭数据集上比较算法，还是针对某个实际场景开展部署。样本规模、类别分布和标注质量都应说明，不能用“公开数据集”四字替代来源、版本和许可。
+\subsection{相关研究与理论基础}
+综述应比较已有工作的假设、优势及不足。可参考真实教材及原始论文\cite{zhou2016,vaswani2017,lecun2015}，但不能仅凭引用这些资料就声称掌握或改进了对应方法。请在实际阅读后按研究问题组织综述，并说明本文与已有工作的关系。
+\subsubsection{研究目标与评价约束}
+将目标转化为可观测指标，同时约束计算成本、数据使用范围和错误风险。准确率只是指标之一；类别不平衡时，还需考虑每类表现、混淆矩阵或其他合适指标。本脚注只补充解释\footnote{注释为解释性材料；参考文献用于标注来源。官方要求脚注①②…每页重置。}，不代替正式引文。
+\section{方法设计与实现}
+\subsection{处理流程与接口}
+图~\ref{fig:pipeline} 展示一种研究流程的组织方式。训练、验证和测试应分开管理；归一化参数及特征选择只能在允许的数据范围内估计，防止信息泄漏。
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[node distance=5mm,box/.style={draw,minimum width=68mm,minimum height=10mm,align=center,font=\small},>=Stealth]
+\node[box](a){数据来源核验与划分};
+\node[box,below=of a](b){仅使用训练数据拟合模型};
+\node[box,below=of b](c){验证集选择参数};
+\node[box,below=of c](d){锁定方案后报告测试结果};
+\draw[->](a)--(b);\draw[->](b)--(c);\draw[->](c)--(d);
+\end{tikzpicture}
+\caption{实验组织流程示例}\label{fig:pipeline}
+\end{figure}
+\subsection{数学描述与符号定义}
+设样本的真实类别为 $y_i$，模型预测为 $\hat{y}_i$，准确率可写为式~\eqref{eq:accuracy}。公式编号示例采用官方“（1）式”形式，正文引用时不重复添加“式”字。
+\begin{equation}\label{eq:accuracy}
+\operatorname{Accuracy}=\frac{1}{n}\sum_{i=1}^{n}\mathbf{1}(y_i=\hat{y}_i).
+\end{equation}
+式中，$n$ 为样本数，$\mathbf{1}(\cdot)$ 为示性函数。对同一测试集反复挑选最优方案会使测试结果偏乐观，因此评价程序也应作为方法的一部分报告。
+\subsection{实现细节与复现说明}
+记录运行环境、依赖版本、随机种子、训练轮数、优化器、学习率策略及模型选择标准。正文解释关键改动，完整代码和数据说明宜放入附录或受控的归档位置。不同方案的比较应保持数据划分和训练预算一致。
+\section{实验方案与结果呈现}
+\subsection{实验设置与对照}
+表~\ref{tab:protocol} 为实验设置表的编写示例。所有条件均须在真实研究中补齐；空缺信息不能靠模板推断。
+\begin{table}[htbp]\centering\caption{实验设置记录项}\label{tab:protocol}
+\begin{tabularx}{\linewidth}{lX}\toprule 项目 & 应报告的内容\\\midrule
+数据与许可 & 名称、版本、来源、访问日期及允许用途\\
+数据划分 & 训练/验证/测试划分规则，是否按个体分组\\
+模型设置 & 网络配置、初始化、训练预算及参数选择依据\\
+评价方式 & 指标、重复次数、置信区间及异常运行处理\\\bottomrule\end{tabularx}
+\end{table}
+\subsection{合成数据的展示}
+表~\ref{tab:synthetic} 和图~\ref{fig:synthetic} 仅为排版示例。它们不是实验结果，不能得出改进方法有效的结论。表题在上、图题在下；单位写入表头或坐标轴，图表需在正文中先被引出。
+\begin{table}[htbp]\centering\tableunit{单位见列题}\caption{合成数据示例（非模型测试结果）}\label{tab:synthetic}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X *{3}{>{\raggedleft\arraybackslash}X}@{}}
+\toprule 配置 & 轮次/次 & 示例指标/\% & 示例时间/s\\\midrule
+A &10&80.0&12.0\\B&20&83.0&24.0\\C&30&84.0&36.0\\\bottomrule\end{tabularx}
+\par\smallskip{\zihao{-5}数据来源：人为构造，仅供版式检查。}
+\end{table}
+\begin{figure}[htbp]\centering\begin{tikzpicture}
+\begin{axis}[width=.85\linewidth,height=55mm,xlabel={轮次/次},ylabel={示例指标/\%},grid=major,xmin=8,xmax=32,ymin=78,ymax=86]
+\addplot[black,mark=*]coordinates{(10,80)(20,83)(30,84)};
+\end{axis}\end{tikzpicture}
+\caption{合成曲线示例（非训练或测试记录）}\label{fig:synthetic}
+\end{figure}
+\subsection{误差分析与消融设计}
+真实结果分析应检查失败样本、类别差异和数据偏差。消融实验每次只改变明确的因素，并报告多次运行的离散程度；不能只选择最好的一次结果。统计检验应满足其适用前提，不应为得到显著性反复尝试而不作说明。
+\section{讨论与适用范围}
+\subsection{结果解释}
+将“观察到的结果”“可能的解释”和“尚未验证的推测”分开表达。改进幅度需要放在误差范围、数据规模和计算成本中解释，不能以单一数据点宣称普适性。
+\subsection{局限与实际应用}
+说明数据覆盖不足、标注误差和跨场景迁移的风险。涉及人脸、医疗图像或其他敏感数据时，应遵守适用的隐私、许可和伦理要求。合成示例不支持任何应用安全性判断。
+\subsection{格式与归档核查}
+确认各级标题、摘要、关键词、参考文献和致谢已进入目录，所有交叉引用均可解析。官方附件要求电子文档为 Word，因此 LaTeX 生成的 PDF 仅是排版成果，不等于自动取得提交资格；请提前向学院确认。

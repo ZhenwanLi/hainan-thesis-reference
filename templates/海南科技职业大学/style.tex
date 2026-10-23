@@ -1,0 +1,23 @@
+% 未取得学校专门模板：下列格式全部是参考默认值，不能当成官方要求。
+\usepackage[top=30mm,bottom=25mm,left=30mm,right=25mm,headheight=15pt]{geometry}
+\input{fonts.tex}
+\providecommand{\songti}{\CJKfamily{zhsong}}
+\providecommand{\heiti}{\CJKfamily{zhhei}}
+\usepackage{amsmath,amssymb,graphicx,booktabs,tabularx,longtable,caption}
+\usepackage{titlesec,tocloft,fancyhdr,setspace,indentfirst,listings}
+\usepackage{tikz}\usetikzlibrary{positioning,arrows.meta}
+\usepackage{gbt7714}
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{3}\setcounter{secnumdepth}{3}
+\titleformat{\section}{\heiti\zihao{3}}{\thesection}{1em}{}
+\titleformat{\subsection}{\heiti\zihao{4}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\heiti\zihao{-4}}{\thesubsubsection}{1em}{}
+\renewcommand{\cfttoctitlefont}{\hfill\heiti\zihao{3}}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
+\tocloftpagestyle{draftthesis}
+\fancypagestyle{draftthesis}{\fancyhf{}\fancyhead[C]{\songti\zihao{5}海南科技职业大学本科毕业设计（论文、创作）}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}}
+\DeclareCaptionFont{hkcap}{\heiti\zihao{5}}
+\captionsetup{font=hkcap,labelsep=space,justification=centering}
+\captionsetup[table]{position=top}
+\counterwithin{figure}{section}\counterwithin{table}{section}\counterwithin{equation}{section}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,frame=single,numbers=left,numberstyle=\tiny,showstringspaces=false}

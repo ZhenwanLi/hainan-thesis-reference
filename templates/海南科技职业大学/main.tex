@@ -1,0 +1,46 @@
+% !TEX program = xelatex
+% 结构据2026第三次修订办法；排版参数未与专门模板核对。
+\documentclass[12pt,a4paper,fontset=none]{ctexart}
+\input{style}
+\newcommand{\thesistitle}{工程应用研究写作与排版示例}
+\newcommand{\thesistitleeng}{A Writing and Typesetting Example for an Engineering Project}
+\newcommand{\thesisauthor}{张三}
+\newcommand{\thesisid}{2022000001}
+\newcommand{\thesiscollege}{请填写学院}
+\newcommand{\thesismajor}{请填写专业}
+\newcommand{\thesisadvisor}{请填写指导教师}
+\begin{document}
+\songti\zihao{-4}\setstretch{1.5}\setlength{\parindent}{2em}
+\begin{titlepage}\thispagestyle{empty}\centering
+\vspace*{10mm}{\heiti\zihao{1}海南科技职业大学}\par\vspace{15mm}
+{\heiti\zihao{2}本科毕业设计（论文、创作）}\par\vspace{18mm}
+{\heiti\zihao{-2}\thesistitle}\par\vspace{20mm}
+\renewcommand{\arraystretch}{1.8}\begin{tabular}{r>{\raggedright\arraybackslash}p{.65\linewidth}}
+学院：&\thesiscollege\\专业：&\thesismajor\\
+姓名：&\thesisauthor\\学号：&\thesisid\\指导教师：&\thesisadvisor
+\end{tabular}\vfill
+二〇二六年六月\par\medskip
+{\heiti\zihao{5}结构参考工作稿：专门书写规范及官方封面原件尚待核对}
+\end{titlepage}
+\pagenumbering{Roman}\pagestyle{draftthesis}
+\phantomsection\addcontentsline{toc}{section}{摘要}
+\begin{center}{\heiti\zihao{-2}\thesistitle}\par\medskip{\heiti\zihao{3}摘\quad 要}\end{center}
+本文是工程应用研究的结构与排版示例，不是已经完成的毕业设计成果。依据海南科技职业大学2026年第三次修订管理办法列出的组成部分，提供题目、中英文摘要、关键词、目录、正文、参考文献、致谢及附录，并展示需求追踪表、系统结构图、公式、测试记录和程序清单的使用方式。管理办法明确要求另行遵守专门书写规范与模板，本轮未取得两份原件，因此本文件的封面、页面、字体、页码和标题层级仅为待核对默认值。正文不预填虚构的企业数据、测试性能或作品成果，实际使用时必须据真实研究替换。管理办法要求正文不少于六千字，本示例有意保持简短，不能直接满足毕业论文工作量或提交条件。
+\par\medskip\noindent\textbf{关键词：}工程应用；需求分析；毕业设计；排版示例
+\clearpage\phantomsection\addcontentsline{toc}{section}{Abstract}
+\begin{center}{\bfseries\zihao{-2}\thesistitleeng}\par\medskip{\bfseries\zihao{3}Abstract}\end{center}
+This unofficial working document demonstrates the structure and typesetting of an engineering project report. Its organization follows the components listed in the university's management regulations revised in March 2026. The separate writing specification and official template have not been obtained, so the cover, margins, fonts, numbering, and page styles remain provisional. No project was implemented or tested for this document. Replace the examples with actual research, design records, and verifiable results. The example does not satisfy the regulation's minimum body-text requirement by itself.
+\par\medskip\noindent\textbf{Keywords:} engineering application; requirements analysis; graduation project; typesetting
+\clearpage\tableofcontents
+\clearpage\pagenumbering{arabic}
+\input{chapters/design}
+\clearpage\begingroup
+\renewcommand{\bibsection}{\section*{参考文献}\addcontentsline{toc}{section}{参考文献}}
+\renewcommand{\bibfont}{\songti\zihao{5}\setstretch{1}}
+\bibliographystyle{gbt7714-2015-numeric}\bibliography{refs}
+\endgroup
+\clearpage\section*{致\quad 谢}\addcontentsline{toc}{section}{致谢}
+请根据实际贡献感谢指导教师、企业导师和提供设备、资料、试验条件的机构与人员。未实施的项目不能写成已得到企业验证，未参与的人员不能虚列。本段是提示，正式论文需自行撰写。
+\clearpage\section*{附\quad 录}\addcontentsline{toc}{section}{附录}
+\input{chapters/appendix}
+\end{document}

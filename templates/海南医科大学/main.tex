@@ -1,0 +1,60 @@
+% !TEX program = xelatex
+% 非官方：仅据药学院2019规范，不代表全校本科统一格式。
+\documentclass[12pt,a4paper,fontset=none]{ctexart}
+\input{style}
+\newcommand{\thesistitle}{药学研究论文写作与排版示例}
+\newcommand{\thesistitleeng}{A Typesetting Example for a Pharmaceutical Research Thesis}
+\newcommand{\thesisauthor}{张三}
+\newcommand{\thesisauthoreng}{Zhang San}
+\newcommand{\thesisid}{2022000001}
+\newcommand{\thesismajor}{药学}
+\newcommand{\thesisadvisor}{李四}
+\newcommand{\thesisadvisoreng}{Li Si}
+\newcommand{\thesisdate}{二〇二六年六月}
+\begin{document}
+\songti\zihao{-4}\setstretch{1.5}\setlength{\parindent}{2em}
+\begin{titlepage}\thispagestyle{empty}\centering
+\vspace*{10mm}{\heiti\zihao{1}海南医科大学}\par\vspace{15mm}
+{\heiti\zihao{2}本科毕业论文}\par\vspace{22mm}
+{\heiti\zihao{2}\thesistitle}\par\vspace{20mm}
+{\songti\zihao{-3}\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{r>{\raggedright\arraybackslash}p{.63\linewidth}}
+学\quad 院：&药学院\\专\quad 业：&\thesismajor\\
+姓\quad 名：&\thesisauthor\\学\quad 号：&\thesisid\\
+指导教师：&\thesisadvisor\\完成日期：&\thesisdate
+\end{tabular}}\vfill
+{\zihao{5}示例封面：学院统一封面原件尚未取得，提交前必须替换或核对。}
+\end{titlepage}
+\pagestyle{empty}\section*{原创性声明（示例文本）}
+本人声明：所提交的论文应为本人在指导教师指导下独立完成的研究成果。引用他人成果应明确注明来源。此处仅为声明占位文本，不是已取得的学院官方声明；提交时须替换为学院当年规定的原文，不得代签或预填签名。
+\vspace{25mm}\begin{flushright}作者签名：\underline{\makebox[30mm]{}}\par\medskip
+日期：\underline{\makebox[40mm]{}}\end{flushright}
+\clearpage
+\begin{center}{\heiti\zihao{-3}\thesistitle}\par\medskip{\heiti\zihao{3}摘\quad 要}\end{center}
+\noindent\textbf{目的：}展示药学本科研究论文的结构式摘要与主要排版元素，不报告真实研究成果。
+\textbf{方法：}依据药学院2019年公开规范整理页面、标题、图表、公式、脚注和参考文献样式，配置可复现的编译流程。
+\textbf{结果：}提供封面占位、声明、中英文摘要、目录、研究设计、结果报告、讨论、参考文献、附录及致谢示例；所有数值均为人为构造的排版数据，不具有医学或药学证据意义。
+\textbf{结论：}本文件可作为论文写作起点，但不等于学校审定模板。使用者须核对所在学院当年要求，用真实研究内容和经审查的材料替换示例，不能将模板文字作为本人研究提交。
+\par\medskip\noindent{\heiti\zihao{3}关键字：}{\zihao{-4}药学；论文写作；结构式摘要；排版示例}
+\clearpage
+\begin{center}{\bfseries\zihao{-3}\thesistitleeng}\par\medskip
+{\bfseries\zihao{4}Author: \thesisauthoreng\par Supervisor: \thesisadvisoreng}\par\medskip
+\textbf{Abstract}\end{center}
+\noindent\textbf{Objective:} To demonstrate the structure and typesetting of an undergraduate pharmaceutical thesis, without reporting empirical findings.
+\textbf{Methods:} The publicly available 2019 School of Pharmacy requirements were used to configure page layout, headings, tables, figures, equations, notes, and references.
+\textbf{Results:} This example provides front matter, a research-design section, synthetic data displays, a discussion, and supplementary material. No clinical or pharmaceutical inference can be drawn from the example data.
+\textbf{Conclusion:} This unofficial template requires verification against current college instructions. All example material must be replaced with independently conducted and appropriately approved research.
+\par\medskip\noindent\textbf{Keywords:} pharmacy; thesis writing; structured abstract; typesetting
+\clearpage\tableofcontents
+\clearpage\pagenumbering{arabic}\pagestyle{medical}
+\input{chapters/research}
+\clearpage\begingroup
+\renewcommand{\bibsection}{\section*{参考文献}\addcontentsline{toc}{section}{参考文献}}
+\renewcommand{\bibfont}{\songti\zihao{-4}}
+\bibliographystyle{gbt7714-2015-numeric}\bibliography{refs}
+\endgroup
+\clearpage\section*{附录}\addcontentsline{toc}{section}{附录}
+\input{chapters/appendix}
+\clearpage\section*{致\quad 谢}\addcontentsline{toc}{section}{致谢}
+药学院2019年规范要求致谢为200至500字，单独成页并放在参考文献之后。本页提供写作提示，不伪造作者的个人经历。正式致谢可说明指导教师在研究设计、方法选择、实验实施及论文修改中的具体帮助，感谢确实提供设备、样品、技术支持和数据协助的机构与人员，并按资助方要求准确填写项目名称和编号。感谢研究参与者时应保护隐私，不公开未经同意的个人信息。对于不符合作者资格但提供协助者，应在征得同意后说明其贡献；不得将没有参与研究的人员写入，也不应以致谢代替必要的署名、引用或利益冲突披露。请根据真实情况独立撰写并删除本段说明。
+\end{document}

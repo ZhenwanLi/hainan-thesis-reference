@@ -1,0 +1,28 @@
+% MIT; default preview uses TeX-distributed fonts, NOT school typography.
+\RequirePackage{fontspec,xeCJK,etoolbox}
+\providecommand{\ThesisFontMode}{preview}
+\ifdefstring{\ThesisFontMode}{school}{%
+  \newcommand{\ThesisCheckFont}[1]{\IfFontExistsTF{#1}{}{\PackageError{thesis-fonts}{Missing font: #1}{Install legally licensed fonts or use THESIS_FONTS=preview.}}}
+  \ThesisCheckFont{Times New Roman}\ThesisCheckFont{SimSun}
+  \ThesisCheckFont{SimHei}\ThesisCheckFont{FangSong}\ThesisCheckFont{KaiTi}
+  \setmainfont{Times New Roman}
+  \setCJKmainfont[AutoFakeBold=2]{SimSun}
+  \setCJKsansfont[AutoFakeBold=2]{SimHei}
+  \setCJKmonofont{FangSong}
+  \setCJKfamilyfont{zhsong}[AutoFakeBold=2]{SimSun}
+  \setCJKfamilyfont{zhhei}[AutoFakeBold=2]{SimHei}
+  \setCJKfamilyfont{zhkai}[AutoFakeBold=2]{KaiTi}
+  \setCJKfamilyfont{zhfs}{FangSong}
+}{%
+  \ifdefstring{\ThesisFontMode}{preview}{}{\PackageError{thesis-fonts}{Invalid font mode}{Use preview or school.}}
+  \setmainfont{texgyretermes-regular.otf}[BoldFont=texgyretermes-bold.otf,ItalicFont=texgyretermes-italic.otf,BoldItalicFont=texgyretermes-bolditalic.otf]
+  \setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
+  \setCJKsansfont{FandolHei-Regular.otf}[BoldFont=FandolHei-Bold.otf]
+  \setCJKmonofont{FandolFang-Regular.otf}
+  \setCJKfamilyfont{zhsong}{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
+  \setCJKfamilyfont{zhhei}{FandolHei-Regular.otf}[BoldFont=FandolHei-Bold.otf]
+  \setCJKfamilyfont{zhkai}{FandolKai-Regular.otf}[AutoFakeBold=2]
+  \setCJKfamilyfont{zhfs}{FandolFang-Regular.otf}
+}
+% Geometric/shapes may not exist in the serif font; ctex's open symbol font.
+\xeCJKDeclareCharClass{CJK}{"2460 -> "24FF,"3200 -> "32FF}

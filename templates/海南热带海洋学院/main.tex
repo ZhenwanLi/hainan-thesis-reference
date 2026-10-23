@@ -1,0 +1,192 @@
+% !TEX program = xelatex
+% 海南热带海洋学院本科毕业论文（设计）模板
+% 专业类别选项：science（理工，默认）/ humanities（文经管法）/ foreign（外语）/ art（艺术）
+\ifdefined\HNTcategory\else\def\HNTcategory{science}\fi
+\documentclass[\HNTcategory]{hntouthesis}
+
+%====================== 论文信息（改这里） ======================
+\renewcommand{\hnttitle}{单片机在测温技术中的应用}
+\renewcommand{\hnttitleeng}{Design and Evaluation of a Temperature Measurement System}
+\renewcommand{\hntauthor}{张\quad 三}
+\renewcommand{\hntstudentid}{2022000001}
+\renewcommand{\hntcollege}{海洋科学技术学院}
+\renewcommand{\hntmajor}{电子信息工程}
+\renewcommand{\hntclass}{2022 级 1 班}
+\renewcommand{\hntadvisor}{李\quad 四}
+\renewcommand{\hntadvisortitle}{副教授}
+\renewcommand{\hntadvisorB}{}          % 第二位指导教师，没有就留空
+\renewcommand{\hntadvisortitleB}{}
+\renewcommand{\hntdate}{二〇二六年六月}
+\renewcommand{\hntcohort}{26}          % 26 届
+\ifhntforeign
+  \renewcommand{\hnttitle}{外语研究论文写作与排版示例}
+  \renewcommand{\hnttitleeng}{A Writing and Typesetting Example for a Foreign-Language Thesis}
+  \renewcommand{\hntcollege}{外国语学院}
+  \renewcommand{\hntmajor}{英语}
+\fi
+\ifhntart
+  \renewcommand{\hnttitle}{毕业设计说明书与作品图版示例}
+  \renewcommand{\hntcollege}{艺术学院（请核对）}
+  \renewcommand{\hntmajor}{请填写专业方向}
+\fi
+\ifhnthuman
+  \renewcommand{\hnttitle}{旅游服务研究论文写作与排版示例}
+  \renewcommand{\hnttitleeng}{A Writing and Typesetting Example for Tourism Service Research}
+  \renewcommand{\hntcollege}{请填写所在学院}
+  \renewcommand{\hntmajor}{旅游管理（示例）}
+\fi
+
+\begin{document}
+\ifhntforeign
+  \linespread{1.52}\selectfont
+\else
+  \linespread{1.38}\selectfont
+\fi
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+%====================== 封面 ======================
+\makehntcover
+\makehntinnercover
+\ifhntforeign\makehntengcover\fi
+\hntbodylayout
+
+\ifhntforeign
+\input{chapters/foreign}
+\else
+\ifhntart
+%====================== 艺术类：设计说明 ======================
+\newpage
+\pagenumbering{arabic}
+\pagestyle{hntmain}
+\section*{设计说明}
+\addcontentsline{toc}{section}{设计说明}
+\section{设计背景与思路}
+\subsection{设计背景}
+此处撰写毕业设计作品的创作背景、选题依据与设计目标。
+
+\subsection{设计思路}
+此处说明作品的主题、材料、工艺、空间或视觉表达方案，可配合图片说明。
+
+\section{作品展示与分析}
+此处放置作品照片或效果图，并从设计理念、形式语言、实施过程等方面进行分析。
+\input{chapters/art-practice}
+
+\newpage
+\section*{致\quad 谢}
+\addcontentsline{toc}{section}{致谢}
+感谢指导教师和同学在毕业设计过程中给予的帮助。
+
+\vspace{2cm}
+\begin{flushright}
+学生签名：\underline{\makebox[3cm]{}}\\[1.2em]
+日\quad 期：\underline{\makebox[3cm]{}}\ 年\ \underline{\makebox[1cm]{}}\ 月\ \underline{\makebox[1cm]{}}\ 日
+\end{flushright}
+\else
+%====================== 中文摘要 ======================
+\newpage
+\pagestyle{hntfront}
+\begin{center}
+{\hei\zihao{-2} \hnttitle}
+\end{center}
+\vspace{0.4em}
+{\song\zihao{-4}\hfill 作者：\hntauthor\par}
+{\song\zihao{-4}\hfill 导师：\hntadvisor\par}
+\vspace{0.8em}
+\begin{center}
+{\hei\zihao{-3} 摘\quad 要}
+\end{center}
+\vspace{0.4em}
+
+{\song\zihao{-4}
+\ifhnthuman
+本文件为旅游服务研究论文的写作与排版示例，不报告真实问卷、访谈或企业调查。模板以服务信息传递为线索，展示问题定义、文献综述、抽样设计、观察维度、资料编码、证据报告和讨论的组织方式，并提供可编辑的三线表、流程图、公式与每页重新编号脚注。文中没有预填受访者数量、满意度比例或统计显著性；正式论文应根据真实且获准使用的资料独立完成，准确区分参与者陈述、观察事实和作者解释，并说明抽样范围、隐私保护与研究局限。摘要应概括实际研究的主要内容和结果，不写成目录式介绍，也不将一般建议当作已经证实的结论。官方文经管法类样例建议摘要约250至350字，关键词3至5个；最终仍需核对所在学院当年通知。
+\else
+本文件为毕业论文排版与写作示例，不报告真实实验成果。模板以温度采集系统为线索，展示研究问题、技术路线、实验设计、误差分析和结论的组织方法，并提供可直接修改的结构图、曲线图、三线表、数学公式、脚注及程序清单。正文中的所有测量数据均为人为构造的排版示例，不能作为科研证据。正式论文应以实际开展的研究为基础，摘要按照目的、方法、结果和结论概括主要内容，补入真实样本量、测试条件和关键结果，避免使用没有数据支持的“高精度”“显著提升”等判断。理工及文经管法类官方样例建议摘要约250至350字，并列出3至5个关键词；具体提交要求以学院当年通知为准。
+\fi
+\par}
+
+\vspace{0.6em}
+\noindent{\hei\zihao{-4} 关键词：}{\hei\zihao{-4}\ifhnthuman 旅游服务；研究设计；资料分析；排版示例\else 单片机；温度测量；DS18B20；液晶显示\fi}
+
+%====================== 英文摘要 ======================
+\newpage
+\begin{center}
+{\rmfamily\zihao{-2}\bfseries \hnttitleeng}
+\end{center}
+\vspace{0.4em}
+{\rmfamily\zihao{-4}\hfill Author: \hntauthoreng\par}
+{\rmfamily\zihao{-4}\hfill Tutor: \hntadvisoreng\par}
+\vspace{0.8em}
+\begin{center}
+{\rmfamily\zihao{-3}\bfseries ABSTRACT}
+\end{center}
+\vspace{0.4em}
+
+{\rmfamily\zihao{-4}
+\ifhnthuman
+This document demonstrates the structure and typesetting of a tourism service research thesis. It does not report a survey, an interview study, or a company investigation. The examples cover problem definition, sampling, coding, evidence reporting, and discussion, together with tables, diagrams, equations, and footnotes. No participant counts, satisfaction rates, or statistical findings are supplied. Replace all examples with independently conducted research and accurately distinguish observations, participant statements, and the author's interpretations. The final abstract must summarize the actual study rather than present a list of chapters.
+\else
+This document is a typesetting and writing example rather than a report of experimental findings. A temperature measurement system is used to demonstrate research questions, system architecture, experimental design, and error analysis. The examples cover diagrams, plots, tables, equations, footnotes, and source code. All numerical results are synthetic and must be replaced with independently obtained research data. The final abstract should accurately describe the purpose, methods, results, and conclusions of the actual study without unsupported claims of accuracy or improvement.
+\fi
+\par}
+
+\vspace{0.6em}
+\noindent{\rmfamily\zihao{-4}\bfseries Keywords:} {\rmfamily\zihao{-4}\ifhnthuman tourism service; research design; data analysis; typesetting\else microcontroller; temperature measurement; DS18B20; LCD\fi}
+
+%====================== 目录 ======================
+\newpage
+\pagestyle{hntfront}
+\tableofcontents
+\thispagestyle{hntfront}
+
+%====================== 正文 ======================
+\newpage
+\pagenumbering{arabic}
+\pagestyle{hntmain}
+
+\ifhnthuman\input{chapters/humanities}\else\input{chapters/research-practice}\fi
+
+\newpage
+\section*{结\quad 论}
+\addcontentsline{toc}{section}{结论}
+本示例完成了论文主要排版元素的串联，展示了从问题定义、方案描述到结果报告的组织方式。上述示例没有实施真实实验或调查，不能得出技术性能或服务质量结论。正式论文应逐项回答研究问题，说明证据支持的结论、适用条件及尚未解决的局限，不应把未来计划写成已经完成的成果。
+
+%====================== 参考文献 ======================
+\newpage
+\begingroup
+\renewcommand{\bibsection}{%
+  \phantomsection
+  \addcontentsline{toc}{section}{参考文献}%
+  \begin{center}\hei\zihao{3}参考文献\end{center}
+  \vspace{0.5\baselineskip}%
+}
+\renewcommand{\bibfont}{\song\zihao{5}}
+\bibliographystyle{gbt7714-2015-numeric}
+\bibliography{refs}
+\endgroup
+
+%====================== 附录 ======================
+\newpage
+\section*{附\quad 录}
+\addcontentsline{toc}{section}{附录}
+{\song\zihao{5}\linespread{1.0}\selectfont
+此处放置需要收录于论文中、但不适合写入正文的附加数据、程序清单、详细公式推导等内容。
+\input{chapters/appendix-practice}
+}
+
+%====================== 致谢 ======================
+\newpage
+\section*{致\quad 谢}
+\addcontentsline{toc}{section}{致谢}
+感谢指导教师在选题、方案设计和论文写作过程中给予的悉心指导，感谢同学和家人在学习期间的支持与帮助。
+
+\vspace{2cm}
+\begin{flushright}
+学生签名：\underline{\makebox[3cm]{}}\\[1.2em]
+日\quad 期：\underline{\makebox[3cm]{}}\ 年\ \underline{\makebox[1cm]{}}\ 月\ \underline{\makebox[1cm]{}}\ 日
+\end{flushright}
+\fi
+\fi
+
+\end{document}

@@ -1,0 +1,233 @@
+% !TEX program = xelatex
+% 海口经济学院本科毕业论文（设计）LaTeX 模板
+% 依据：教务处《附件13 论文格式（修订10.21）》与《附件12 装订封面》
+% 编译：xelatex -> bibtex -> xelatex -> xelatex
+\documentclass[12pt,a4paper,fontset=none]{ctexart}
+
+%====================== 页面与字体 ======================
+\usepackage{geometry}
+\geometry{top=30mm,bottom=30mm,left=25mm,right=20mm}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\input{fonts.tex}
+\newcommand{\song}{\CJKfamily{zhsong}}
+\newcommand{\hei}{\CJKfamily{zhhei}}
+\newcommand{\kai}{\CJKfamily{zhkai}}
+\newcommand{\fs}{\CJKfamily{zhfs}}
+% 可换行字段，禁止使用makebox把长题目悄悄画到页面外。
+\newcommand{\coverfield}[1]{\parbox[c]{9.8cm}{\centering #1\par\kern2pt\hrule height0.4pt}}
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{etoolbox}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage[super]{gbt7714}
+\usepackage{indentfirst}
+\usepackage{tabularx,longtable,listings,perpage,tikz,pgfplots}
+\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat=1.18}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "24FF}
+\MakePerPage{footnote}
+\renewcommand{\thefootnote}{\ifcase\value{footnote}\or①\or②\or③\or④\or⑤\or⑥\or⑦\or⑧\or⑨\or⑩\or⑪\or⑫\or⑬\or⑭\or⑮\or⑯\or⑰\or⑱\or⑲\or⑳\else\arabic{footnote}\fi}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,frame=single,numbers=left,numberstyle=\tiny,showstringspaces=false}
+
+%====================== 论文信息（改这里） ======================
+\newcommand{\thesistitle}{基于深度学习的图像识别方法研究}
+\newcommand{\thesistitleeng}{Research on Image Recognition Based on Deep Learning}
+\newcommand{\thesisauthor}{张\quad 三}
+\newcommand{\thesisid}{2022000001}
+\newcommand{\thesisschool}{信息工程学院}
+\newcommand{\thesismajor}{计算机科学与技术}
+\newcommand{\thesisclass}{2022 级 1 班}
+\newcommand{\thesisadvisor}{李\quad 四}
+\newcommand{\thesisdate}{二〇二六年六月}
+
+%====================== 标题样式（正文三级标题） ======================
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+\titleformat{\section}{\hei\zihao{-3}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\hei\zihao{4}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\hei\zihao{-4}}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{0.6em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.4em}{0.3em}
+\titlespacing*{\subsubsection}{0pt}{0.3em}{0.2em}
+
+%====================== 目录样式 ======================
+\renewcommand{\contentsname}{目\hspace{2em}录}
+\renewcommand{\cfttoctitlefont}{\hfill\song\zihao{-2}\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
+\renewcommand{\cftsecfont}{\song\zihao{-4}}
+\renewcommand{\cftsecpagefont}{\song\zihao{-4}}
+\renewcommand{\cftsubsecfont}{\song\zihao{-4}}
+\renewcommand{\cftsubsecpagefont}{\song\zihao{-4}}
+\renewcommand{\cftsubsubsecfont}{\song\zihao{-4}}
+\renewcommand{\cftsubsubsecpagefont}{\song\zihao{-4}}
+\renewcommand{\cftdotsep}{\cftnodots}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsubsecindent}{3em}
+
+%====================== 页眉页脚 ======================
+\fancypagestyle{main}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\song\zihao{5}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\pagestyle{main}
+\tocloftpagestyle{empty}
+
+%====================== 图、表、公式 ======================
+\DeclareCaptionFont{wu}{\song\zihao{5}}
+\DeclareCaptionFont{wuhei}{\hei\zihao{5}}
+\captionsetup{font=wuhei,labelsep=space,justification=centering}
+\newcommand{\hkctableunit}{}
+\newcommand{\tableunit}[1]{\renewcommand{\hkctableunit}{#1}}
+% 表号左、标题中、计量单位右；三栏均允许换行。
+\DeclareCaptionFormat{hkctable}{%
+  \parbox[t]{.20\linewidth}{\raggedright #1}%
+  \parbox[t]{.60\linewidth}{\centering #3}%
+  \parbox[t]{.20\linewidth}{\raggedleft\hkctableunit}\par}
+\AtBeginEnvironment{table}{\song\zihao{5}\renewcommand{\hkctableunit}{}}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\lightrulewidth}{0.5pt}
+\captionsetup[table]{position=top,format=hkctable,singlelinecheck=false}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\theequation}{\arabic{equation}}
+\makeatletter
+\renewcommand{\tagform@}[1]{\maketag@@@{（#1）式}}
+\makeatother
+\setlength{\mathindent}{2em}
+
+\begin{document}
+\linespread{1.5}\zihao{-4}\selectfont
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+%====================== 封面（附件13） ======================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1.0cm}
+{\hei\zihao{1}\bfseries 海口经济学院}\\[1.5cm]
+{\hei\zihao{2} 本\hspace{0.30em}科\hspace{0.30em}生\hspace{0.30em}毕\hspace{0.30em}业\hspace{0.30em}论\hspace{0.30em}文（设计）}\\[2.2cm]
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{r@{\hspace{0.3em}}l}
+{\hei\zihao{4} 题\quad 目：} & \coverfield{\hei\zihao{3}\thesistitle} \\[0.2cm]
+{\hei\zihao{4} 姓\quad 名：} & \coverfield{\kai\zihao{-3}\thesisauthor} \\[0.2cm]
+{\hei\zihao{4} 学\quad 号：} & \coverfield{\kai\zihao{-3}\thesisid} \\[0.2cm]
+{\hei\zihao{4} 所在学院：} & \coverfield{\kai\zihao{-3}\thesisschool} \\[0.2cm]
+{\hei\zihao{4} 专业班级：} & \coverfield{\kai\zihao{-3}\thesismajor\ \thesisclass} \\[0.2cm]
+{\hei\zihao{4} 指导教师：} & \coverfield{\kai\zihao{-3}\thesisadvisor} \\
+\end{tabular}
+\end{center}
+
+\vfill
+\begin{center}
+{\hei\zihao{3}\thesisdate}
+\end{center}
+\end{titlepage}
+
+%====================== 声明 ======================
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\hei\zihao{2} 声\quad 明}
+\end{center}
+\vspace{0.8em}
+{\song\zihao{-4}\hspace*{2em}
+此处为原创性声明占位，不是学校声明原文。正式提交请自行取得所属学院当届声明，按要求填写并由本人确认、签名；本项目不附官方表单，也不代签。本页说明须在提交前替换，不可当作正式声明。
+
+\vspace{3.2cm}
+\hfill 本人签名：\underline{\makebox[3.2cm]{}}\par
+\vspace{1.2em}
+\hfill 日\quad 期：\underline{\makebox[3.2cm]{}}\ 年\ \underline{\makebox[1.2cm]{}}\ 月\ \underline{\makebox[1.2cm]{}}\ 日\par
+}
+
+%====================== 目录 ======================
+\newpage
+\thispagestyle{empty}
+\begingroup
+\titleformat{\section}[block]{\song\zihao{-2}\bfseries\centering}{}{0pt}{}
+\tableofcontents
+\thispagestyle{empty}
+\endgroup
+
+%====================== 摘要（页码从 1 开始） ======================
+\newpage
+\pagenumbering{arabic}
+\pagestyle{main}
+\addcontentsline{toc}{section}{摘要}
+\addcontentsline{toc}{section}{关键词}
+
+\begin{center}
+{\hei\zihao{-2}\bfseries \thesistitle}
+\end{center}
+\vspace{0.8em}
+
+\noindent{\kai\zihao{-4}\bfseries 摘\quad 要：}{\kai\zihao{5}
+本文为图像识别研究的写作与排版示例，不报告已完成的模型训练或实验发现。模板围绕问题定义、相关工作、方法描述、实验方案、结果呈现和研究局限组织正文，提供可编辑的流程图、公式、三线表、曲线图、脚注及程序清单，并示范参考文献和附录的使用。文中出现的准确率等数值均为合成排版数据，不能据此声称任何方法优于基线。正式写作应替换为本人开展的研究，报告数据来源、划分方式、评价条件和真实结果，避免将测试集用于调参或把重复测试误当独立实验。使用者还应核对所在学院当年规定、签名要求和电子文档格式；本文件能够生成PDF，但不自动满足学校要求提交Word的条款。}
+
+\vspace{0.5em}
+\noindent{\kai\zihao{-4}\bfseries 关键词：}{\kai\zihao{5}深度学习；图像识别；卷积神经网络；注意力机制}
+
+\vspace{1.4em}
+\begin{center}
+{\rmfamily\zihao{-3}\bfseries \thesistitleeng}
+\end{center}
+\vspace{0.6em}
+
+\noindent{\rmfamily\zihao{5}\bfseries Abstract:}\ {\rmfamily\zihao{5}
+This document is a writing and typesetting example for an image recognition thesis. It demonstrates research questions, methods, experimental design, tables, figures, equations, notes, and references. No model was trained for this document, and all numerical results are synthetic. They do not support claims of improved accuracy. Replace all examples with independently conducted research and verify current college submission requirements.}
+
+\vspace{0.5em}
+\noindent{\rmfamily\zihao{5}\bfseries Key words:}\ {\rmfamily\zihao{5}deep learning; image recognition; convolutional neural network; attention mechanism}
+
+%====================== 正文 ======================
+\newpage
+% 学校特殊排序由本地hkcu-gbt7714.bst完成；不再手写nocite排序。
+\input{chapters/research-practice}
+\section{结论}
+本模板展示了图像识别研究论文中主要排版元素及其引用方式，不提供真实模型性能或实验结论。正式结论应回应研究问题，明确证据支持的发现、适用范围和局限，不把未来计划写成已完成成果。
+
+%====================== 参考文献 ======================
+\par\vspace{3\baselineskip}
+\begingroup
+\renewcommand{\bibsection}{%
+  \phantomsection
+  \addcontentsline{toc}{section}{参考文献}%
+  \noindent{\hei\zihao{-4}参考文献}\par
+  \vspace{0.8em}%
+}
+\renewcommand{\bibfont}{\song\zihao{5}\linespread{1}\selectfont}
+\bibliographystyle{hkcu-gbt7714}
+\bibliography{refs}
+\endgroup
+
+\clearpage
+\section*{附录（可选）}\addcontentsline{toc}{section}{附录（可选）}
+\input{chapters/appendix-practice}
+
+%====================== 致谢 ======================
+\newpage
+\section*{致\quad 谢}
+\addcontentsline{toc}{section}{致谢}
+
+感谢指导教师在论文选题、研究方案和写作过程中给予的悉心指导，感谢同学和家人在学习期间的支持与帮助。
+
+\end{document}

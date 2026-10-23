@@ -1,0 +1,14 @@
+\subsection*{附录 A\quad 复现实验清单}
+\begin{longtable}{lp{.68\linewidth}}\toprule 材料 & 记录说明\\\midrule\endhead
+环境 & 操作系统、软件版本、依赖与运行命令\\
+数据 & 来源、版本、划分文件和许可\\
+模型 & 参数配置、随机种子和权重归档\\
+分析 & 原始输出、绘图脚本和异常记录\\\bottomrule\end{longtable}
+\subsection*{附录 B\quad 指标计算示例}
+\begin{lstlisting}[language=Python]
+# Synthetic labels: not an experimental result.
+truth = [0, 1, 1, 0]
+prediction = [0, 1, 0, 0]
+accuracy = sum(a == b for a, b in zip(truth, prediction)) / len(truth)
+print(accuracy)
+\end{lstlisting}

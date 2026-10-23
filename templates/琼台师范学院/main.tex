@@ -1,0 +1,248 @@
+% !TEX program = xelatex
+% 琼台师范学院本科毕业论文（设计）LaTeX 模板
+% 说明：学校 2026 届材料需验证码下载，本模板按《琼台师范学院本科生毕业论文（设计）
+% 工作规定（2021 年修订版）》的装订顺序和通用本科论文格式搭建。
+% 使用前请务必以学院当年下发的 Word 模板核对页边距、字号和封面字段。
+\documentclass[12pt,a4paper,fontset=none]{ctexart}
+
+%====================== 页面与字体 ======================
+\usepackage{geometry}
+\geometry{top=25.4mm,bottom=25.4mm,left=30mm,right=25mm}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\input{fonts.tex}
+\newcommand{\song}{\CJKfamily{zhsong}}
+\newcommand{\hei}{\CJKfamily{zhhei}}
+\newcommand{\kai}{\CJKfamily{zhkai}}
+\newcommand{\fs}{\CJKfamily{zhfs}}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage[hidelinks]{hyperref}
+\usepackage{gbt7714}
+\usepackage{tabularx,longtable,listings,perpage,tikz,pgfplots}
+\usetikzlibrary{positioning,arrows.meta}
+\pgfplotsset{compat=1.18}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "24FF}
+\MakePerPage{footnote}
+\renewcommand{\thefootnote}{\ifcase\value{footnote}\or①\or②\or③\or④\or⑤\or⑥\or⑦\or⑧\or⑨\or⑩\or⑪\or⑫\or⑬\or⑭\or⑮\or⑯\or⑰\or⑱\or⑲\or⑳\else\arabic{footnote}\fi}
+
+%====================== 论文信息（改这里） ======================
+\newcommand{\thesistitle}{小学语文课堂提问策略研究}
+\newcommand{\thesistitleeng}{A Study on Questioning Strategies in Primary School Chinese Classes}
+\newcommand{\thesisauthor}{李\quad 四}
+\newcommand{\thesisid}{2022010101}
+\newcommand{\thesisschool}{文学院}
+\newcommand{\thesismajor}{汉语言文学}
+\newcommand{\thesisclass}{2022 级 1 班}
+\newcommand{\thesisadvisor}{王\quad 五}
+\newcommand{\thesisdate}{二〇二六年五月}
+
+%====================== 标题 ======================
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+\titleformat{\section}{\hei\zihao{3}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\hei\zihao{4}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\hei\zihao{-4}}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{0.6em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.4em}{0.3em}
+\titlespacing*{\subsubsection}{0pt}{0.3em}{0.2em}
+
+%====================== 目录 ======================
+\renewcommand{\contentsname}{目\quad 录}
+\renewcommand{\cfttoctitlefont}{\hfill\hei\zihao{3}}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
+\renewcommand{\cftsecfont}{\song\zihao{-4}}
+\renewcommand{\cftsecpagefont}{\song\zihao{-4}}
+\renewcommand{\cftsubsecfont}{\song\zihao{-4}}
+\renewcommand{\cftsubsecpagefont}{\song\zihao{-4}}
+\renewcommand{\cftsubsubsecfont}{\song\zihao{-4}}
+\renewcommand{\cftsubsubsecpagefont}{\song\zihao{-4}}
+\renewcommand{\cftdotsep}{\cftnodots}
+\setlength{\cftbeforesecskip}{0.2em}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsubsecindent}{3em}
+
+%====================== 页眉页脚 ======================
+\fancypagestyle{main}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\song\zihao{5}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\pagestyle{main}
+
+%====================== 图表公式 ======================
+\DeclareCaptionFont{wu}{\song\zihao{5}}
+\captionsetup{font=wu,labelsep=space,justification=centering}
+\captionsetup[table]{position=top}
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+
+% 可换行封面字段；具体封面版式仍待当届官方原件校正。
+\newcommand{\coverfield}[1]{\parbox[c]{9.6cm}{\centering #1\par\kern2pt\hrule height0.4pt}}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\counterwithin{equation}{section}
+\begin{document}
+\linespread{1.5}\zihao{-4}\selectfont
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+%====================== 封面 ======================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1.0cm}
+{\hei\zihao{1}\bfseries 琼台师范学院}\\[1.6cm]
+{\hei\zihao{2} 本科毕业论文（设计）}\\[2.2cm]
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{r@{\hspace{0.3em}}l}
+{\hei\zihao{4} 题\quad 目：} & \coverfield{\hei\zihao{3}\thesistitle} \\[0.2cm]
+{\hei\zihao{4} 姓\quad 名：} & \coverfield{\kai\zihao{-3}\thesisauthor} \\[0.2cm]
+{\hei\zihao{4} 学\quad 号：} & \coverfield{\kai\zihao{-3}\thesisid} \\[0.2cm]
+{\hei\zihao{4} 学\quad 院：} & \coverfield{\kai\zihao{-3}\thesisschool} \\[0.2cm]
+{\hei\zihao{4} 专\quad 业：} & \coverfield{\kai\zihao{-3}\thesismajor\ \thesisclass} \\[0.2cm]
+{\hei\zihao{4} 指导教师：} & \coverfield{\kai\zihao{-3}\thesisadvisor} \\
+\end{tabular}
+\end{center}
+
+\vfill
+\begin{center}
+{\hei\zihao{3}\thesisdate}
+\end{center}
+\end{titlepage}
+
+%====================== 独创性声明 ======================
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\hei\zihao{2} 独创性声明（占位）}
+\end{center}
+\vspace{0.8em}
+{\song\zihao{-4}\hspace*{2em}
+本页仅预留独创性声明位置，尚未取得当届学校声明原文。正式提交时须自行从学院取得并替换，不应将本段提示或通用声明误认为学校审定文字。作者应确认引用、成果与贡献真实准确，并按学院要求本人签署。}
+
+\vspace{2.5cm}
+\begin{flushright}
+作者签名：\underline{\makebox[3cm]{}}\\[1.2em]
+日\quad 期：\underline{\makebox[3cm]{}}\ 年\ \underline{\makebox[1cm]{}}\ 月\ \underline{\makebox[1cm]{}}\ 日
+\end{flushright}
+
+%====================== 授权声明 ======================
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\hei\zihao{2} 授权声明（占位）}
+\end{center}
+\vspace{0.8em}
+{\song\zihao{-4}\hspace*{2em}
+本页仅预留论文使用授权声明位置，不产生任何实际授权。正式提交前请取得当届原文，理解授权对象、范围、保密安排及本人权利后按要求填写。本项目不代替作者同意，也不捏造学校授权条款。}
+
+\vspace{2.5cm}
+\begin{flushright}
+作者签名：\underline{\makebox[3cm]{}}\qquad 指导教师签名：\underline{\makebox[3cm]{}}\\[1.2em]
+日\quad 期：\underline{\makebox[3cm]{}}\ 年\ \underline{\makebox[1cm]{}}\ 月\ \underline{\makebox[1cm]{}}\ 日
+\end{flushright}
+
+%====================== 中文摘要 ======================
+\newpage
+\pagenumbering{roman}
+\pagestyle{main}
+\addcontentsline{toc}{section}{摘要}
+\begin{center}
+{\hei\zihao{-2}\bfseries \thesistitle}
+\end{center}
+\vspace{0.6em}
+\begin{center}
+{\hei\zihao{3} 摘\quad 要}
+\end{center}
+\vspace{0.4em}
+
+{\song\zihao{-4}
+本文件为教育研究论文写作与排版示例，不代表已经开展课堂观察或访谈。模板展示研究问题、研究设计、资料编码、结果报告与讨论的组织方法，提供观察维度表、流程图、公式、脚注、附录等可编辑元素。没有实际收集三所学校、二十四节课或十二位教师的数据，也不提供虚构的伦理批准或统计结论。正式论文应使用真实且获准使用的资料，明确样本选择、知情同意、隐私保护和分析过程。当前只核实了琼台师范学院公开工作规定中的装订结构，尚未取得当年官方撰写规范，因此封面字段、页边距、字号及页码样式仍须与学院要求核对。}
+
+\vspace{0.6em}
+\noindent{\hei\zihao{-4} 关键词：}{\song\zihao{-4}小学语文；课堂提问；阅读教学；教学策略}
+
+%====================== 英文摘要 ======================
+\newpage
+\addcontentsline{toc}{section}{Abstract}
+\begin{center}
+{\rmfamily\zihao{-2}\bfseries \thesistitleeng}
+\end{center}
+\vspace{0.6em}
+\begin{center}
+{\rmfamily\zihao{3}\bfseries Abstract}
+\end{center}
+\vspace{0.4em}
+
+{\rmfamily\zihao{-4}
+This document demonstrates the structure and typesetting of an educational research thesis. It does not report classroom observations, teacher interviews, or empirical findings. The examples cover research questions, sampling, coding, tables, diagrams, equations, and supplementary material. Replace all examples with independently conducted and appropriately approved research. The layout remains provisional because the current official writing specification has not been obtained.}
+
+\vspace{0.6em}
+\noindent{\rmfamily\zihao{-4}\bfseries Key words:} {\rmfamily\zihao{-4}primary school Chinese; classroom questioning; reading instruction; teaching strategy}
+
+%====================== 目录 ======================
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+
+%====================== 正文 ======================
+\newpage
+\pagenumbering{arabic}
+\pagestyle{main}
+
+\input{chapters/research-practice}
+\section{结论}
+本模板展示研究论文的组织方式和排版元素，没有开展实证研究，不能据此判断课堂提问的实际效果。正式结论应回答研究问题，说明证据支持的发现及其适用范围，不将个别观察外推为普遍规律。
+
+%====================== 参考文献 ======================
+\newpage
+\begingroup
+\renewcommand{\bibsection}{%
+  \phantomsection
+  \addcontentsline{toc}{section}{参考文献}%
+  \begin{center}\hei\zihao{3}参考文献\end{center}
+  \vspace{0.5\baselineskip}%
+}
+\renewcommand{\bibfont}{\song\zihao{5}}
+\bibliographystyle{gbt7714-2015-numeric}
+\bibliography{refs}
+\endgroup
+
+%====================== 附录 ======================
+\newpage
+\section*{附\quad 录}
+\addcontentsline{toc}{section}{附录}
+{\song\zihao{5}\linespread{1.0}\selectfont
+附录 A\quad 课堂观察记录表\par
+附录 B\quad 教师访谈提纲\par
+\input{chapters/appendix-practice}
+}
+
+%====================== 致谢 ======================
+\newpage
+\section*{致\quad 谢}
+\addcontentsline{toc}{section}{致谢}
+感谢指导教师在选题、调研和论文写作过程中给予的悉心指导，感谢参与观察与访谈的各位教师和同学，感谢家人一直以来的支持。
+
+\vspace{2cm}
+\begin{flushright}
+作者签名：\underline{\makebox[3cm]{}}\\[1.2em]
+日\quad 期：\underline{\makebox[3cm]{}}\ 年\ \underline{\makebox[1cm]{}}\ 月\ \underline{\makebox[1cm]{}}\ 日
+\end{flushright}
+
+\end{document}

@@ -1,0 +1,31 @@
+\usepackage[top=25.4mm,bottom=25.4mm,left=31.7mm,right=31.7mm,headheight=15pt,headsep=5mm]{geometry}
+\input{fonts.tex}
+\providecommand{\songti}{\CJKfamily{zhsong}}
+\providecommand{\heiti}{\CJKfamily{zhhei}}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "24FF}
+\usepackage{amsmath,amssymb,graphicx,booktabs,tabularx,longtable,caption}
+\usepackage{titlesec,tocloft,fancyhdr,setspace,indentfirst,perpage,listings}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{positioning,arrows.meta}
+\pgfplotsset{compat=1.18}
+\usepackage{gbt7714}
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{3}\setcounter{secnumdepth}{3}
+\titleformat{\section}{\centering\heiti\zihao{3}}{\thesection}{1em}{}
+\titleformat{\subsection}{\heiti\zihao{-4}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\heiti\zihao{-4}}{\thesubsubsection}{1em}{}
+\renewcommand{\cftsecfont}{\heiti\zihao{-4}}
+\renewcommand{\cftsubsecfont}{\songti\zihao{-4}}
+\renewcommand{\cftsubsubsecfont}{\songti\zihao{-4}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hfill\heiti\zihao{3}}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
+\tocloftpagestyle{empty}
+\fancypagestyle{medical}{\fancyhf{}\fancyhead[C]{\songti\zihao{5}海南医科大学本科毕业论文}\fancyhead[R]{\songti\zihao{5}第\thepage 页}\renewcommand{\headrulewidth}{0.4pt}}
+\DeclareCaptionFont{medcap}{\heiti\zihao{5}}
+\captionsetup{font=medcap,labelsep=space,justification=centering}
+\captionsetup[table]{position=top}
+\MakePerPage{footnote}
+\renewcommand{\thefootnote}{\ifcase\value{footnote}\or①\or②\or③\or④\or⑤\or⑥\or⑦\or⑧\or⑨\or⑩\or⑪\or⑫\or⑬\or⑭\or⑮\or⑯\or⑰\or⑱\or⑲\or⑳\else\arabic{footnote}\fi}
+\renewcommand{\footnotesize}{\zihao{-5}}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,frame=single,numbers=left,numberstyle=\tiny,showstringspaces=false}

@@ -1,0 +1,51 @@
+\section*{前言}\addcontentsline{toc}{section}{前言}
+研究论文应清楚说明研究背景、待解决问题和研究目的。本模板以分析方法评价为叙述线索，演示医学与药学论文常见的材料与方法、结果、讨论及结论结构；没有开展实验，不作临床、药效或安全性判断。正式选题必须符合专业培养要求，不能用综述直接替代药学院规范所要求的研究性论文。
+
+文献检索宜追溯到研究原文、正式指南或标准。此处引用真实的方法学资料仅作引文排版演示\cite{ichq2,jcgm2008}，不表示本研究已经完成方法验证。模板不得替代伦理审批、实验室安全审查、数据授权或研究注册。
+\section{材料与方法}
+\subsection{研究设计与适用范围}
+说明研究类型、地点、时间范围、研究对象和分析单位。涉及人体、动物或个人健康数据时，应在开始研究前完成适用的伦理审查和知情同意，并在文中准确报告批准机构和编号。本例不提供任何虚构的批准编号。
+\subsubsection{材料与仪器}
+按实际使用记录试剂名称、等级、批号、来源及仪器型号。可复现性依赖具体条件，而不是仪器品牌的简单罗列。药品名称优先使用规范通用名，首次出现的缩写需给出全称。
+\subsection{技术路线与质量控制}
+图~\ref{fig:workflow} 展示方法研究的组织方式。真实流程还需报告样品处理、盲法、随机化、重复测定及质量控制规则，并区分技术重复与生物学重复。
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[node distance=6mm,box/.style={draw,minimum width=60mm,minimum height=9mm,align=center,font=\small},>=Stealth]
+\node[box](a){明确研究问题与预设分析方案};
+\node[box,below=of a](b){材料准备与质量控制};
+\node[box,below=of b](c){测量记录与异常数据审核};
+\node[box,below=of c](d){统计分析与结果解释};
+\draw[->](a)--(b);\draw[->](b)--(c);\draw[->](c)--(d);
+\end{tikzpicture}
+\caption{研究流程示例（非实际实验流程）}\label{fig:workflow}
+\end{figure}
+\subsection{统计分析与误差表达}
+预先明确主要指标、统计方法和适用前提。相关不等于因果，统计显著也不等于临床或药学意义。对于重复测量，均值与样本标准差可按式~\eqref{eq:sd} 计算：
+\begin{equation}\label{eq:sd}
+\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i,\qquad s=\sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}.
+\end{equation}
+式中，$n$ 为独立观测数，不能把同一样品的重复读数任意当作独立样本。本脚注演示每页重新编号\footnote{本文件的数值均为合成数据，不能作为任何药品质量、诊断或治疗决策依据。}。
+\subsection{数据保存与分析复现}
+记录原始文件、变量定义、处理脚本、软件版本和排除标准；研究完成后按机构规定归档。不得删除不符合预期的结果，也不应在看到数据后悄悄改变主要指标。一般统计报告可参考 SAMPL 等真实指南\cite{sampl2015}，随机试验、观察性研究、诊断研究分别有不同报告要求\cite{consort2010,strobe2007}。
+\clearpage\section{结果}
+\subsection{描述性结果的呈现}
+表~\ref{tab:synthetic-med} 仅演示三线表、单位和小数位的编排，不报告真实含量测定结果。正文需要先引出表格，说明观测量和记录条件，避免只写“结果见表”。
+\begin{table}[htbp]\centering\caption{合成数据示例（非药学实验结果）}\label{tab:synthetic-med}
+{\zihao{5}\begin{tabular}{rrr}\toprule 标识 & 参考值/(mg/L) & 示例读数/(mg/L)\\\midrule
+1&1.00&1.02\\2&2.00&1.98\\3&3.00&3.03\\4&4.00&3.99\\\bottomrule\end{tabular}}
+\end{table}
+\subsection{图形与不确定性}
+图~\ref{fig:synthetic-med} 为合成数据散点示例。正式图形应标注坐标、单位、样本数及误差线的含义；不能将标准差、标准误和置信区间混用。只有四个人工数据点不能支持线性范围、检出限或准确度结论。
+\begin{figure}[htbp]\centering\begin{tikzpicture}
+\begin{axis}[width=.85\linewidth,height=55mm,xlabel={参考值/(mg/L)},ylabel={示例读数/(mg/L)},grid=major]
+\addplot[only marks,black]coordinates{(1,1.02)(2,1.98)(3,3.03)(4,3.99)};
+\end{axis}\end{tikzpicture}
+\caption{合成数据散点图（非方法验证证据）}\label{fig:synthetic-med}
+\end{figure}
+\clearpage\section{讨论}
+\subsection{结果解释与既有证据的关系}
+讨论应回答研究问题，解释观察结果与已有证据的一致或不一致之处，明确何者为直接证据、何者为推测。不能根据单一指标推断药效、安全性或临床价值，也不能把仪器读数直接等同于生物学机制。
+\subsection{局限与适用条件}
+报告样本来源、测量偏倚、混杂因素和外推范围。没有真实试验时，应明确不存在可报告的实证结论，而不是编造“差异具有统计学意义”。本模板中的统计公式和图表只验证排版能力。
+\section{结论}
+正式结论应与研究目的逐项对应，使用具体、可核验、有边界的语言。模板不提供药学研究发现；请替换为实际研究得出的结果，并说明仍需进一步验证的内容。

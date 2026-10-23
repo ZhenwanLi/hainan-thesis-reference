@@ -1,0 +1,46 @@
+% 外语类单独使用英文正文，不将理工正文简单换字体。
+\pagestyle{hntfront}
+\begin{center}{\hei\zihao{-2}\hnttitle}\par\medskip{\hei\zihao{3}摘\quad 要}\end{center}
+本文为外语类论文排版示例，不报告实证研究结果。模板展示中英文摘要、英文致谢、英文目录、英文正文及参考文献的组织顺序。正式写作应根据实际选题补充研究背景、理论框架、语料来源、分析方法、研究发现与局限，引用可核验的原始材料，不应保留本文件的示例性陈述。
+\par\medskip\noindent{\hei\zihao{4}关键词：}论文写作，研究方法，格式示例
+\clearpage
+\begin{center}{\rmfamily\bfseries\zihao{-2}\hnttitleeng}\par\medskip
+Author: \hntauthoreng\par Supervisor: \hntadvisoreng\par\medskip
+{\bfseries\zihao{3}ABSTRACT}\end{center}
+This document demonstrates the organization of a foreign-language thesis. It includes bilingual abstracts, acknowledgements, a table of contents, a method section, and a reference list. It does not present an empirical study. All examples must be replaced with the author's own research, supported by verifiable sources and a clearly described method.
+\par\medskip\noindent\textbf{Keywords:} thesis writing, research methods, typesetting
+\clearpage\section*{Acknowledgements}
+This page precedes the contents in the supplied official foreign-language example. Replace this text with a personal and accurate acknowledgement of the people and institutions that supported the work.
+\clearpage
+\renewcommand{\contentsname}{CONTENTS}
+\renewcommand{\cfttoctitlefont}{\hfill\rmfamily\bfseries\zihao{2}}
+\renewcommand{\cftsecfont}{\rmfamily\bfseries\zihao{4}}
+\renewcommand{\cftsubsecfont}{\rmfamily\zihao{-4}}
+\renewcommand{\cftsubsubsecfont}{\rmfamily\zihao{-4}}
+\renewcommand{\cftdotsep}{4.5}
+\tableofcontents
+\clearpage\pagenumbering{arabic}\pagestyle{hntmain}
+\section{Introduction}
+\subsection{Research question}
+A thesis should define a specific question, explain why it matters, and describe the evidence needed to answer it. The present document is a formatting example only. It makes no claim about language use, translation quality, or cultural differences.
+\subsection{Scope and contribution}
+Define the language pair, genre, period, and sampling frame before collecting material. A contribution may consist of a transparent corpus, an explicit analytical procedure, or a carefully supported interpretation. Avoid presenting stereotypes as established cultural facts.
+\section{Literature Review}
+\subsection{Concepts and evidence}
+Organize the review around competing explanations and methodological choices. Distinguish the claims made by a source from the evidence it provides. Real publications are included here solely to demonstrate citation commands\cite{knuth1984,lamport1994}; they are not a literature review of translation studies.
+\section{Research Design}
+\subsection{Materials and sampling}
+Report how texts were selected, excluded, and archived. If human participants are involved, describe the relevant ethics approval and consent procedures. Do not infer that publicly visible personal data may be reused without restrictions.
+\subsubsection{Coding procedure}
+Define categories before interpreting examples, document ambiguous cases, and explain how disagreements were resolved.
+\paragraph{A fourth-level heading}
+The supplied Word example uses four levels of decimal headings; only three levels are listed in the contents.
+\section{Analysis and Discussion}
+Link each analytical claim to specific examples and consider alternative explanations. A table can summarize coding categories, but it cannot replace a reasoned interpretation. No empirical findings are supplied in this template.
+\section{Conclusion}
+Answer the research question with appropriately bounded claims, explain limitations, and identify realistic future work. Do not introduce evidence that has not been discussed in the body.
+\clearpage\begingroup
+\renewcommand{\bibsection}{\section*{References}\addcontentsline{toc}{section}{References}}
+\renewcommand{\bibfont}{\rmfamily\zihao{5}}
+\bibliographystyle{gbt7714-2015-numeric}\bibliography{refs}
+\endgroup

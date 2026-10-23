@@ -1,0 +1,33 @@
+# Build outputs are local; publish selected previews only after review.
+.build/
+reports/
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.pdf.tmp
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+# Not part of the source release.
+*.zip
+*.rar
+*.7z
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.html
+*.ttf
+*.ttc
+*.otf
+*.woff
+*.woff2

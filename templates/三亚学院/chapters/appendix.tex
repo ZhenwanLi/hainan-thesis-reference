@@ -1,0 +1,15 @@
+\subsection*{附录 A\quad 数据字典与归档清单}
+\begin{longtable}{lp{.65\linewidth}}\toprule 条目 & 说明\\\midrule\endhead
+变量定义 & 名称、含义、单位、允许值与缺失编码\\
+资料来源 & 原始地址、版本、许可和取得日期\\
+分析程序 & 输入、输出、运行环境和执行命令\\
+过程材料 & 任务书、开题、中期、评阅、答辩等按学院要求整理\\\bottomrule\end{longtable}
+\subsection*{附录 B\quad 最小计算示例}
+\begin{lstlisting}[language=Python]
+# Synthetic values for a typesetting example only.
+reference = [1.0, 2.0, 3.0]
+observed = [1.1, 1.9, 3.0]
+mae = sum(abs(y - x) for x, y in zip(reference, observed)) / len(reference)
+print(mae)
+\end{lstlisting}
+附录顺序与位置以学院规定为准；本文件的示例不替代官方过程管理表格。

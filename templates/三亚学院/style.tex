@@ -1,0 +1,23 @@
+% 以下默认参数均待所在学院备案模板核对，不是已取得的官方规范。
+\usepackage[top=30mm,bottom=25mm,left=30mm,right=20mm,headheight=15pt]{geometry}
+\input{fonts.tex}
+\providecommand{\songti}{\CJKfamily{zhsong}}
+\providecommand{\heiti}{\CJKfamily{zhhei}}
+\usepackage{amsmath,amssymb,graphicx,booktabs,tabularx,longtable,caption}
+\usepackage{titlesec,tocloft,fancyhdr,setspace,indentfirst,listings}
+\usepackage{tikz}\usetikzlibrary{positioning,arrows.meta}
+\usepackage[super]{gbt7714}
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{3}\setcounter{secnumdepth}{3}
+\titleformat{\section}{\heiti\zihao{-3}}{\thesection}{1em}{}
+\titleformat{\subsection}{\heiti\zihao{4}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\heiti\zihao{-4}}{\thesubsubsection}{1em}{}
+\renewcommand{\cfttoctitlefont}{\hfill\heiti\zihao{-3}}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
+\tocloftpagestyle{sanya}
+\fancypagestyle{sanya}{\fancyhf{}\fancyhead[L]{\songti\zihao{5}三亚学院毕业论文（设计）}\fancyhead[R]{\songti\zihao{5}第\thepage 页}\renewcommand{\headrulewidth}{0.4pt}}
+\DeclareCaptionFont{sycap}{\heiti\zihao{5}}
+\captionsetup{font=sycap,labelsep=space,justification=centering}
+\captionsetup[table]{position=top}
+\counterwithin{figure}{section}\counterwithin{table}{section}\counterwithin{equation}{section}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,frame=single,numbers=left,numberstyle=\tiny,showstringspaces=false}

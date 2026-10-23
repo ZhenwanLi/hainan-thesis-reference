@@ -1,0 +1,53 @@
+% !TEX program = xelatex
+% 三亚学院本科论文参考工作稿；未取得学院备案版式，不能声称官方复刻。
+\documentclass[12pt,a4paper,fontset=none]{ctexart}
+\input{style}
+\newcommand{\thesistitle}{应用型研究论文写作与排版示例}
+\newcommand{\thesistitleeng}{A Writing and Typesetting Example for an Applied Research Thesis}
+\newcommand{\thesisauthor}{张三}
+\newcommand{\thesisid}{2022000001}
+\newcommand{\thesiscollege}{请填写所在学院}
+\newcommand{\thesismajor}{请填写专业与班级}
+\newcommand{\thesisadvisor}{请填写校内指导教师}
+\newcommand{\thesisindustryadvisor}{请填写行业导师（如适用）}
+\begin{document}
+\songti\zihao{-4}\setstretch{1.5}\setlength{\parindent}{2em}
+\begin{titlepage}\thispagestyle{empty}\centering
+\vspace*{10mm}{\heiti\zihao{1}三亚学院}\par\vspace{15mm}
+{\heiti\zihao{2}本科毕业论文（设计）}\par\vspace{15mm}
+{\heiti\zihao{-2}\thesistitle}\par\vspace{18mm}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{r>{\raggedright\arraybackslash}p{.65\linewidth}}
+姓名：&\thesisauthor\\学号：&\thesisid\\
+学院：&\thesiscollege\\专业班级：&\thesismajor\\
+校内导师：&\thesisadvisor\\行业导师：&\thesisindustryadvisor
+\end{tabular}\vfill
+二〇二六年六月\par\medskip
+{\heiti\zihao{5}非官方参考工作稿——封面及版式待学院备案模板核对}
+\end{titlepage}
+\pagestyle{empty}\section*{独创性声明（占位）}
+请在此插入学院当年要求的独创性声明原文。当前未取得统一声明表，故不编造“官方声明”。提交前应由本人确认论文为独立完成的真实成果，注明引用和协助，并按要求亲笔签名。不得保留此提示作为正式声明。
+\vspace{25mm}\begin{flushright}作者签名：\underline{\makebox[30mm]{}}\par\medskip
+日期：\underline{\makebox[40mm]{}}\end{flushright}
+\clearpage\pagenumbering{Roman}\pagestyle{sanya}
+\phantomsection\addcontentsline{toc}{section}{摘要}
+\begin{center}{\heiti\zihao{-2}\thesistitle}\par\medskip{\heiti\zihao{-3}摘\quad 要}\end{center}
+本文为本科论文写作与排版工作稿，不报告真实研究成果。模板以应用型研究为线索，组织问题定义、文献综述、方法设计、证据报告、讨论及结论，提供流程图、三线表、数学公式、程序清单和附录等常用元素。文中不预填调查样本量、企业数据或实验性能，避免把排版示例误认为实证发现。三亚学院2026届工作通知明确要求学院结合学科特点确定格式并报教务处审核备案，因此本文件的页面、字号、封面和页码仅为可修改起点，不是已核验的学院模板。正式写作应取得所属学院备案版式，依据实际完成的研究替换全部示例内容，并核对签名、检测、电子文档及归档要求。
+\par\medskip\noindent\textbf{关键词：}应用研究；研究设计；论文写作；排版示例
+\clearpage\phantomsection\addcontentsline{toc}{section}{Abstract}
+\begin{center}{\bfseries\zihao{-2}\thesistitleeng}\par\medskip{\bfseries\zihao{-3}Abstract}\end{center}
+This document is an unofficial working template rather than a report of empirical findings. It demonstrates problem definition, literature review, methods, evidence reporting, discussion, and conclusions, together with diagrams, tables, equations, code, and appendices. No survey, experiment, or company investigation was conducted for this example. The university's notice for the 2026 cohort requires colleges to establish discipline-specific formats and submit them for approval. Consequently, the present layout must be checked against the relevant college's approved template before submission.
+\par\medskip\noindent\textbf{Keywords:} applied research; research design; thesis writing; typesetting
+\clearpage\tableofcontents
+\clearpage\pagenumbering{arabic}
+\input{chapters/research}
+\clearpage\begingroup
+\renewcommand{\bibsection}{\section*{参考文献}\addcontentsline{toc}{section}{参考文献}}
+\renewcommand{\bibfont}{\songti\zihao{5}\setstretch{1}}
+\bibliographystyle{gbt7714-2015-numeric}\bibliography{refs}
+\endgroup
+\clearpage\section*{致\quad 谢}\addcontentsline{toc}{section}{致谢}
+请根据真实情况感谢指导教师、行业导师、提供研究条件的单位和给予具体帮助的人员。不应虚构调研经历或他人贡献；涉及企业名称和个人身份时，还需确认披露权限。此处为写作提示，正式论文请替换。
+\clearpage\section*{附\quad 录}\addcontentsline{toc}{section}{附录}
+\input{chapters/appendix}
+\end{document}

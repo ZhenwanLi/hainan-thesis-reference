@@ -1,0 +1,89 @@
+% 本文是写作与排版操作示例，不是可提交的研究论文。
+\section{绪论}
+\subsection{研究问题与研究边界}
+论文应首先说明需要解决的具体问题，而不是直接罗列器件或软件名称。本例的问题是：在给定测温范围、采样周期和使用环境下，如何组织数据采集、异常检测与结果显示，并用可追溯的方法评价测量误差。研究边界应同时给出，包括温度范围、供电条件、参考仪器以及不在本研究范围内的场景。
+
+资料检索应优先使用器件数据手册、标准和原始研究论文。引用前应核对作者、题名、版本与可访问地址，不应将模板中的占位文献作为已经阅读的材料。本例使用真实出版的教材和技术报告演示文献排版\cite{knuth1984,lamport1994}。
+\subsection{文献综述的组织}
+综述宜围绕研究问题比较已有方法的假设、证据及限制，而不只是按作者排列摘要。可建立“研究对象—方法—数据—结论—局限”的文献矩阵；同类结果的测试条件不一致时，不宜直接以数值高低判断优劣。文献管理与正文写作应同步进行，记录实际使用的页码及访问日期。
+\subsubsection{直接引用与解释性脚注}
+参考文献用于标识已有工作的出处，解释性脚注用于补充不适合放在正文中的信息，两者不能混为一谈。这里演示同页重新编号的脚注\footnote{本脚注用于说明排版方法，不包含研究证据。脚注应随其引用位置出现在同一页。}。连续引用可使用 \verb|\cite{knuth1984,lamport1994}|，交叉引用应使用标签而非手写页码。
+\paragraph{四级标题示例}
+理工类使用四级阿拉伯数字编号，文经管法类使用“一、㈠、1、⑴”的层级形式。四级标题不进入三级目录；正式写作应避免为了展示编号而过度切分内容。
+\subsection{研究内容与技术路线}
+研究任务可分解为需求界定、方案比较、系统实现、试验设计及结果讨论。每个任务应有相应产物，例如设计指标、方案选择依据、接口定义、原始记录和可复核的计算过程。下文展示如何在同一文档中引用图、表和公式，不用外部图片文件也能编译。
+
+\section{总体方案与方法}
+\subsection{系统结构与接口}
+图~\ref{fig:architecture} 展示数据从采集端到记录端的流向。正式系统图应标出关键接口、采样频率和异常处理路径，避免只画模块而不说明模块间传递什么信息。
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=5mm and 5mm,box/.style={draw,rounded corners,minimum width=23mm,minimum height=11mm,align=center,font=\small},>=Stealth]
+\node[box] (sensor) {温度采集};
+\node[box,right=of sensor] (check) {数据校验};
+\node[box,right=of check] (process) {换算与滤波};
+\node[box,below=of process] (record) {显示与记录};
+\draw[->] (sensor)--(check);\draw[->] (check)--(process);\draw[->] (process)--(record);
+\end{tikzpicture}
+\caption{数据处理结构示意图（方法示例）}\label{fig:architecture}
+\end{figure}
+\subsection{方案比较与选择依据}
+方案比较应使用与需求直接相关的指标，而不是给候选方案任意打分。对无法量化的约束可以说明判定条件和证据来源。表~\ref{tab:requirements} 为需求追踪表的结构示例，不代表某项器件的实际性能。
+\begin{table}[htbp]
+\centering\caption{需求与验证方法对应表}\label{tab:requirements}
+\small
+\begin{tabularx}{\linewidth}{lXX}
+\toprule 需求项 & 说明 & 验证方法\\\midrule
+测量范围 & 在任务书中明确上下限 & 分温度点测试并保存原始记录\\
+采样周期 & 给出采集与显示更新的区别 & 时间戳统计与逻辑分析\\
+异常处理 & 识别断连、超时及无效读数 & 主动故障注入与恢复测试\\
+重复性 & 相同条件下的离散程度 & 重复测量与标准差估计\\\bottomrule
+\end{tabularx}
+\end{table}
+\subsection{误差定义与数学表达}
+设第 $i$ 次测量值为 $y_i$，相应参考值为 $x_i$，误差定义为 $e_i=y_i-x_i$。均方根误差的计算示例如式~\eqref{eq:rmse} 所示：
+\begin{equation}\label{eq:rmse}
+\operatorname{RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-x_i)^2}.
+\end{equation}
+式中，$n$ 为有效测量次数。误差指标本身不能代替测量不确定度分析；参考仪器、环境波动和重复测量的相关性也应说明。国际计量联合委员会的不确定度指南可作为相关方法的阅读材料\cite{jcgm2008}。
+
+\section{实现与可复现性}
+\subsection{模块实现与异常处理}
+实现章节应描述输入、输出、约束及错误分支，而不是把完整代码粘贴成正文。采集模块至少需要说明通信失败时如何返回状态，数据校验模块说明如何区分无效数据与真实极值，显示模块说明异常状态的呈现方式。关键接口的选择应能够追溯至前文需求。
+\subsubsection{参数配置}
+采样周期、平滑窗口和报警阈值应作为显式参数记录。改变参数进行比较时，应保持其他条件不变；如果多项条件同时改变，需要讨论混杂因素。论文应给出软件版本、依赖版本、运行命令和原始数据存放位置，保证读者可以重建分析过程。
+\subsection{最小计算示例}
+下面的程序只演示误差计算，不包含真实采集驱动；输入数组明确为合成数据。正式论文应将大段代码放在附录，并在正文解释其作用和验证方法。
+\begin{lstlisting}[language=Python,caption={误差计算示例（输入为合成数据）}]
+from math import sqrt
+
+reference = [20.0, 25.0, 30.0, 35.0]
+observed = [20.1, 24.9, 30.2, 35.0]
+errors = [y - x for x, y in zip(reference, observed)]
+rmse = sqrt(sum(e * e for e in errors) / len(errors))
+print(f"RMSE = {rmse:.3f}")
+\end{lstlisting}
+
+\section{试验设计与结果报告}
+\subsection{试验条件与记录规范}
+真实试验应明确仪器型号、校准情况、测试环境、稳定判据和每个条件下的重复次数。记录中应保留失败数据及排除理由，不能只保留看起来较好的结果。研究涉及人体、访谈或敏感信息时，还应取得相应审批和知情同意，不能用“模板示例”替代必要程序。
+\subsection{合成数据的表格与曲线示例}
+表~\ref{tab:synthetic} 和图~\ref{fig:errors} 仅供观察版式；没有开展实验，也不支持任何性能结论。表中单位写入表头，数据保留的小数位应与实际测量精度一致。
+\begin{table}[htbp]
+\centering\caption{合成测量数据（非实验结果）}\label{tab:synthetic}
+\begin{tabular}{rrrr}\toprule 序号 & 参考值/℃ & 示例读数/℃ & 误差/℃\\\midrule
+1 &20.0&20.1&0.1\\2 &25.0&24.9&-0.1\\3 &30.0&30.2&0.2\\4 &35.0&35.0&0.0\\\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.9\linewidth,height=52mm,xlabel={参考温度/℃},ylabel={误差/℃},xmin=19,xmax=36,ymin=-0.15,ymax=0.25,grid=major,tick label style={font=\small},label style={font=\small}]
+\addplot[black,mark=*] coordinates {(20,0.1)(25,-0.1)(30,0.2)(35,0)};
+\end{axis}
+\end{tikzpicture}
+\caption{合成数据误差曲线（仅演示坐标与单位）}\label{fig:errors}
+\end{figure}
+\subsection{讨论与局限}
+讨论应解释结果与研究问题之间的关系，区分观察事实、计算结果和作者推断。对于样本量不足、参考仪器精度有限或条件覆盖不全等问题，应说明其可能影响，不宜只写“仍有不足”。由于本模板没有真实研究，不能讨论统计显著性或声称方案优于已有工作。
+\subsection{提交前复核}
+检查目录能否正确跳转，图表与公式是否有正文引导，是否存在未定义引用，附录是否与正文呼应。最后核对学院当年模板、签字要求、查重文件格式及归档材料；PDF 编译成功不意味着学校接受 PDF 替代 Word。
